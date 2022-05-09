@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="en"><head>
+    <link rel="stylesheet" type="text/css" href="chatbot-didi.css">
+    <meta charset="utf-8">
+
+   <!--  Todo: Add Aframe Src Script    -->
+   <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1f00d0beadf87bad7d275c174616e048f8b573fc/dist/aframe-master.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+  </head>
+
+  
+  <body>
+    <!-- a-frame -->
+    <a-scene vr-mode-ui="enabled: false">
+        <a-assets>
+        </a-assets>
+
+      <a-entity movement-controls>
+        <a-entity position="0 1.6 0"
+                  camera
+                  look-controls>
+          <a-entity cursor="rayOrigin: mouse"></a-entity>
+        </a-entity>
+      </a-entity>
+
+        <!-- BG -->
+        <a-sky src="bg_outside.png" rotation="0 -110 -40"
+            animation__rotation="property: rotation;
+                            from: 0 0 0;
+                            to: 90 360 90;
+                            dir: alternate;
+                            dur: 350000;
+                            easing: easeOutCubic;
+                            loop: true;">
+        </a-sky>
+    </a-scene>
+    
+
+
+    <!-- chatbot -->
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    <df-messenger
+        intent="outside2"
+        chat-title="(¬_¬)✧"
+        agent-id="611c009a-3aa2-4a95-aeff-1135c3a49e25"
+        language-code="zh-tw"
+        chat-icon= 'https://img.onl/ozh2uY';
+    ></df-messenger>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            //To minimise the height of chatbox
+            $(document).ready(function() {
+                window.addEventListener('dfMessengerLoaded', function (event) {
+                $r1 = document.querySelector("df-messenger");
+                $r2 = $r1.shadowRoot.querySelector("df-messenger-chat");
+                $r3 = $r2.shadowRoot.querySelector("df-messenger-user-input"); //for other mods
+                var sheet = new CSSStyleSheet;
+
+                // manage box height from here
+                sheet.replaceSync( `div.chat-wrapper[opened="true"] { width:${window.innerWidth - 150}px; height:${window.innerHeight - 150}px }`);
+                $r2.shadowRoot.adoptedStyleSheets = [ sheet ];
+                });
+            });
+
+            window.addEventListener('resize', function(){
+                //更新寬高
+                $r2 = $r1.shadowRoot.querySelector("df-messenger-chat");
+                var sheet = new CSSStyleSheet;
+                sheet.replaceSync( `div.chat-wrapper[opened="true"] { width:${window.innerWidth * 0.88}px; height:${window.innerHeight * 0.8}px }`);
+                $r2.shadowRoot.adoptedStyleSheets = [ sheet ];
+
+                //更新底部
+                const root = document.documentElement;
+                root.style.setProperty('--bottomValue', `${window.innerHeight * 0.1}px`)
+            })
+        </script>
+
+</body></html>

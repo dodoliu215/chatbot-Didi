@@ -1,0 +1,30 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+canvas {
+  display: block;
+}
+
+:root{
+  --bottomValue: 70px;
+}
+
+df-messenger {
+  /* --df-messenger-chat-icon: url('https://img.onl/IlvkJt'); */
+  --df-messenger-bot-message: #f6f2ec;
+  --df-messenger-button-titlebar-color: #3f339d;
+  --df-messenger-chat-background-color: #9ec376;
+  /* --df-messenger-chat-background-image: url('https://img.onl/IlvkJt'); */
+  --df-messenger-font-color: #000000;
+  --df-messenger-send-icon: #a8a8a8;
+  --df-messenger-user-message: #d2d2ff;
+  --df-messenger-minimized-chat-close-icon-color: #ffffff;
+  --df-messenger-input-font-color: #000000;
+  --df-messenger-chip-border-color: #3f339d;
+  --df-messenger-chip-color: #e9656500;
+
+  position: fixed;
+  bottom: var(--bottomValue);
+}
