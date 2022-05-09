@@ -15,6 +15,7 @@
     <!-- a-frame -->
     <a-scene vr-mode-ui="enabled: false">
         <a-assets>
+            <a-asset-items id="BG" src="bg_outside.png"></a-asset-items>
         </a-assets>
 
       <a-entity movement-controls>
@@ -26,7 +27,7 @@
       </a-entity>
 
         <!-- BG -->
-        <a-sky src="bg_outside.png" rotation="0 -110 -40"
+        <a-sky src="#BG" rotation="0 -110 -40"
             animation__rotation="property: rotation;
                             from: 0 0 0;
                             to: 90 360 90;
@@ -78,4 +79,5 @@
             })
         </script>
 
-</body></html>
+</body>
+</html>
